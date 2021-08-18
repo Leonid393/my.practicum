@@ -1,0 +1,16 @@
+  Арифметические операции со столбцами (числовой тип)
+    data['column1'] = data['column2'] + data['column3']
+    data['column1'] = data['column2'] - data['column3']
+    data['column1'] = data['column2'] * data['column3']
+    data['column1'] = data['column2'] / data['column3']
+
+  Расчет параметров числовых столбцов
+    data['column'].sum() # сумма значений
+    data['column'].min() # минимум
+    data['column'].max() # максимум
+    data['column'].mean() # среднее значение
+    data['column'].median() # медиана в столбце
+    data['column'].count() # количество значений в столбце
+
+  Применение нескольких операций к столбцу при группировке
+    data.groupby('column1').agg({'column2': ['count', 'sum'], 'column3': ['min', 'max']})
