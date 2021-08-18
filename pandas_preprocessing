@@ -31,6 +31,19 @@
        pd.DatetimeIndex(data['time']).minute # минуты
        pd.DatetimeIndex(data['time']).second # секунды
   
+  Приведение строковых значений в нижний регистр
+    str.lower()
+    
+  Стемминг
+    from nltk.stem import SnowballStemmer
+    russian_stemmer = SnowballStemmer('russian')
+    russian_stemmer.stem(text)
+
+  Лемматизация
+    from pymystem3 import Mystem
+    m = Mystem()
+    lemmas = m.lemmatize(data['column'])
+
 Слияние двух датасетов:
   data.merge(d, on, how)
     # d - датасет, с которым сливают
@@ -55,4 +68,3 @@
   data.duplicated()
     # возвращает продублированные строки
   data['column'].value_counts()
-  
