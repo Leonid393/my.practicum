@@ -1,0 +1,58 @@
+Порядок действий при предобработке данных
+
+Работа с пропусками:
+
+  Выявление уникальных значений по столбцу
+    data['column'].value_counts()
+    data['column'].unique()
+
+  Удаление строк с пропущенными значениями
+    data['column'].dropna()
+
+  Поиск пропущенных значений
+    data.isnull() создает булевый список True/False по пропущенным значениям
+
+  Замена пропусков на любое значение
+    data.fillna() - можно применять на столбец или на весь датасет
+    
+Изменение типов данных:
+
+  Перевод строковых значений в числа
+    data['column'].to_numeric()
+    data['column'].astype()
+  
+  Работа с датой и временем
+    date['column']= pd.to_datetime(date['column'], format='%d.%m.%YZ%H:%M:%S')
+      получение частей даты и времени
+       pd.DatetimeIndex(data['time']).year # года
+       pd.DatetimeIndex(data['time']).month # месяца
+       pd.DatetimeIndex(data['time']).day # дня
+       pd.DatetimeIndex(data['time']).hour # часа
+       pd.DatetimeIndex(data['time']).minute # минуты
+       pd.DatetimeIndex(data['time']).second # секунды
+  
+Слияние двух датасетов:
+  data.merge(d, on, how)
+    # d - датасет, с которым сливают
+    # on - колонка, по значениям которой сливают
+    # how - тип слияния:
+  data.merge(data2, on='merge_column', how='left')
+    # left - обязательно присутствуют все значения из таблицы data,
+    # вместо значений из data2 могут быть NaN
+  data.merge(data2, on='merge_column', how='right')
+    # right - обязательно присутствуют все значения из таблицы data2,
+    # вместо значений из data могут быть NaN
+    
+Сводная таблица
+  data_pivot = data.pivot_table(index = ['column1', 'column2'], columns = 'source',
+                                values = 'column_pivot', aggfunc = 'function')
+    # index - столбец или столбцы, по которым происходит группировка данных
+    # columns - столбец по значениям которого будет происходить группировка
+    # values - значения, по которым мы хотим увидеть сводную таблицу
+    # aggfunc - функция, которая будет применяться к значениям
+
+Поиск дубликатов
+  data.duplicated()
+    # возвращает продублированные строки
+  data['column'].value_counts()
+  
