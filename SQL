@@ -1,4 +1,26 @@
 CREATE table test(id INTEGER PRIMARY KEY AUTOINCREMENT, field1 INT);
+
+CREATE TABLE value_list(id INTEGER PRIMARY KEY, field INT);
+INSERT INTO value_list
+	WITH RECURSIVE r AS (
+    	SELECT 
+        	1 AS i, 
+        	1 AS field
+    	UNION 
+		    SELECT 
+    	    i+1 AS i,
+    	    field +1 as field 
+		FROM r
+   		WHERE i < 1000
+)
+SELECT * FROM r;
+
+
+
+
+
+
+
 CREATE TABLE value_list(id INTEGER PRIMARY KEY AUTOINCREMENT, rand_value INT);
 INSERT INTO value_list
   WITH RECURSIVE
@@ -10,3 +32,22 @@ INSERT INTO value_list
         LIMIT 100
   )
 SELECT id,rand_value FROM cte;
+
+CREATE table test(ID INTEGER PRIMARY KEY, field1 INT);
+
+CREATE table test(ID INTEGER PRIMARY KEY, field1 INT);
+CREATE TABLE value_list(id INTEGER PRIMARY KEY, rand_value INT);
+INSERT INTO value_list
+	WITH RECURSIVE r AS (
+    	SELECT 
+        	1 AS i, 
+        	1 AS value
+    	UNION 
+		    SELECT 
+    	    i+1 AS i, 
+    	    value +1 as value 
+		FROM r
+   		WHERE i < 1000000
+)
+SELECT * FROM r;
+
