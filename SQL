@@ -1,0 +1,12 @@
+CREATE table test(id INTEGER PRIMARY KEY AUTOINCREMENT, field1 INT);
+CREATE TABLE value_list(id INTEGER PRIMARY KEY AUTOINCREMENT, rand_value INT);
+INSERT INTO value_list
+  WITH RECURSIVE
+    cte(id, rand_value) AS (
+       SELECT 1, (abs(random() % 11) )
+       UNION ALL
+       SELECT id+1, (abs(random() % 11) )
+         FROM cte
+        LIMIT 100
+  )
+SELECT id,rand_value FROM cte;
