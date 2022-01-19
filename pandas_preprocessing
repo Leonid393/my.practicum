@@ -65,6 +65,5 @@
     # aggfunc - функция, которая будет применяться к значениям
 
 Поиск дубликатов
-  data.duplicated()
-    # возвращает продублированные строки
+  data.duplicated() # возвращает логический Series True/False
   data['column'].value_counts()
